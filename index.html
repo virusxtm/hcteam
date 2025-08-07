@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></> 𝗛𝗖 𝗩𝟭𝗥𝗨𝟱 𝗧𝗘𝗔𝗠</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: radial-gradient(circle at top, #000000);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      perspective: 1000px;
+    }
+
+    canvas#particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .profile-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+      text-align: center;
+      padding: 60px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      z-index: 1;
+      width: 460px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    }
+
+    .profile-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      margin-bottom: 30px;
+      object-fit: cover;
+    }
+
+    .profile-card h1 {
+      font-size: 34px;
+      margin: 15px 0 10px;
+    }
+
+    .profile-card p {
+      font-size: 18px;
+      color: #ddd;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 8px 10px;
+      padding: 14px 24px;
+      background: #a100ff;
+      color: white;
+      border-radius: 10px;
+      font-size: 16px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .buttons a:hover {
+      background: #d000ff;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="profile-card" id="card">
+  <img src="https://i.postimg.cc/kDr20k0N/file-00000000939c622f9827ee4ea4cad7a6.png" alt="Profile Picture">
+  <h1></> 𝗛𝗖 𝗩𝟭𝗥𝗨𝟱 𝗧𝗘𝗔𝗠</h1>
+  <p> 💀 H4X0R | 🎮 PWNED | 👁️‍🗨️ Modz </p>
+  <div class="buttons">
+    <a href="https://discord.gg/8Sz8Rdpv">Discord</a>
+
+    <a href="https://youtube.com/@hydraxcheat?si=KZ6s0bS9SsZ3Nbzu" target="_blank">YouTube</a>
+  </div>
+</div>
+
+<script>
+  const canvas = document.getElementById("particles");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  for (let i = 0; i < 100; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 3 + 1,
+      d: Math.random() * 1
+    });
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+    ctx.beginPath();
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      ctx.moveTo(p.x, p.y);
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+    }
+    ctx.fill();
+    update();
+  }
+
+  function update() {
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.y += p.d + 0.5;
+      if (p.y > canvas.height) {
+        p.y = 0;
+        p.x = Math.random() * canvas.width;
+      }
+    }
+  }
+
+  setInterval(drawParticles, 30);
+
+  
+</script>
+
+</body>
+</html>
